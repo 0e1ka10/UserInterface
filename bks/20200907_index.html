@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- HEADER -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LexxDash | LexxAuto</title>
+  <!-- Ionicons CDN from https://ionicons.com/v2 -->
+  <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Google Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
+  <!-- Theme style CDN -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.5/css/adminlte.css"
+    integrity="sha512-tijAbxsTGeccZpZAEJA089XQhmJ+rD9K20RGG2x+uJyoHs2vzDQVcTnsI2Kdki8aFR8EvQ6kD17ZyrlEiVB4eg=="
+    crossorigin="anonymous">
+  <!-- ros2djs -->
+  <!-- nav2djs -->
+  <script type="text/javascript" src="http://cdn.robotwebtools.org/EaselJS/current/easeljs.min.js"></script>
+  <script type="text/javascript" src="http://cdn.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
+  <script type="text/javascript" src="http://cdn.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
+  <script type="text/javascript" src="http://cdn.robotwebtools.org/ros2djs/current/ros2d.min.js"></script>
+  <script type="text/javascript" src="http://cdn.robotwebtools.org/nav2djs/current/nav2d.min.js"></script>
+  <script type="text/javascript">
+    /**
+    *  Setup all GUI when page is loaded
+    */
+    function init() {
+      // connect to ROS
+      var ros = new ROSLIB.Ros({
+        url : 'ws: //localhost:9090'
+      });
+      // create the main viewer
+      var viewer = new ROS2D.Viewer({
+        divID : 'nav',
+        width : 750,
+        heigth : 800
+      });
+      // setup the nav client
+      var nav = NAV2D.OccupancyGridClientNav({
+        ros : ros,
+        rootObject : viewer.scene,
+        viewer : viewer,
+        serverName : '/pr2_move_base' // need to change
+      });
+    }
+  </script>
+</head>
+
+
+<!-- BODY -->
+<body class="hold-transition sidebar-mini" onload="init()">
+<div class="wrapper">
+
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-secondary navbar-dark">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <!-- サイドバー格納ボタン -->
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+      <!-- Navbar内のリンク付きボタン -->
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="https://0e1ka10.github.io/UserInterface/index.html" class="nav-link">Home</a>
+      </li>
+    </ul>
+
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+      <!-- Messages Dropdown Menu -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="far fa-comments"></i>
+          <span class="badge badge-danger navbar-badge">3</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.5/img/user1-128x128.jpg"
+                alt="User Avatar"
+                class="img-size-50 mr-3 img-circle">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  Brad Diesel
+                  <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                </h3>
+                <p class="text-sm">Call me whenever you can...</p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.5/img/user8-128x128.jpg"
+                alt="User Avatar"
+                class="img-size-50 img-circle mr-3">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  John Pierce
+                  <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                </h3>
+                <p class="text-sm">I got your message bro</p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.5/img/user3-128x128.jpg"
+                alt="User Avatar"
+                class="img-size-50 img-circle mr-3">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  Nora Silvester
+                  <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+                </h3>
+                <p class="text-sm">The subject goes here</p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+        </div>
+      </li>
+      <!-- Notifications Dropdown Menu -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="far fa-bell"></i>
+          <span class="badge badge-warning navbar-badge">15</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <span class="dropdown-header">15 Notifications</span>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-envelope mr-2"></i> 4 new messages
+            <span class="float-right text-muted text-sm">3 mins</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-users mr-2"></i> 8 friend requests
+            <span class="float-right text-muted text-sm">12 hours</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-file mr-2"></i> 3 new reports
+            <span class="float-right text-muted text-sm">2 days</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <!-- 画面左サイドバーアイコン付きヘッダ -->
+  <aside class="main-sidebar sidebar-dark-secondary elevation-4">
+    <!-- Brand Logo -->
+    <!-- href=<access link path> -->
+    <a href="#" class="brand-link">
+      <img src="https://0e1ka10.github.io/UserInterface/img/icons/lexxicon.jpg"
+        alt="LexxAuto Logo"
+        class="brand-image img-circle elevation-3"
+        style="opacity: .8">
+      <span class="brand-text font-weight-light">LexxDash</span>
+    </a>
+
+    <!-- Sidebar -->
+    <!-- 左アイコン付きサイドバー -->
+    <div class="sidebar">
+      <!-- Sidebar Menu -->
+      <!-- サイドバー内メニュー項目 -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Sidebar menu links -->
+          <li class="nav-item">
+            <a href="#dash" class="nav-link active">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Dashboard</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#set" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Settings</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#rob" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Robot</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#hst" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>History</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#hlp" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Help</p>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <!-- メインページコンテンツ -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Dashboard</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">LexxDash</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row"> <!-- 列毎にオブジェクトを配置するように定義 -->
+          <!-- 1列目 -->
+          <div class="col-lg-6"> <!-- 全体の50% -->
+            <div class="card card-secondary">
+              <div class="card-header">
+                <h3 class="card-title">Map</h3>
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  This card is used for present location of each robots.
+                </p>
+
+                <a href="#" class="btn btn-success">Pause</a>
+                <a href="#" class="btn btn-danger">Emergency Stop</a>
+              </div>
+            </div>
+
+            <div class="card card-secondary">
+              <div class="card-header">
+                <h3 class="card-title">Item</h3>
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  This card is used for picking item name and number.<br>
+                  And also show progress of picking.
+                </p>
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+              </div>
+            </div><!-- /.card -->
+          </div>
+
+          <!-- 2列目 -->
+          <!-- /.col-md-6 -->
+          <div class="col-lg-6"> <!-- 全体の残り50% -->
+            <div class="card card-secondary">
+              <div class="card-header">
+                <h3 class="card-title">Line Chart</h3>  
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                  </div>
+                </div>
+              <div class="card-body">
+                <div class="chart"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                  <canvas id="areaChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 360px;" width="720" height="500" class="chartjs-render-monitor"></canvas>
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+
+            <div class="card card-primary card-outline">
+              <div class="card-header">
+                <h5 class="m-0">Featured</h5>
+              </div>
+              <div class="card-body">
+                <h6 class="card-title">Special title treatment</h6>
+
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>
+          <!-- /.col-md-6 -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <!-- To the right -->
+    <div class="float-right d-none d-sm-inline">
+      v1.0.0
+    </div>
+    <!-- Default to the left -->
+    <strong>Copyright &copy; 2020 <a href="https://www.lexxpluss.com/">LexxPluss</a></strong> All rights reserved.
+  </footer>
+</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED SCRIPTS -->
+<!-- jQuery CDN from https://code.jquery.com -->
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
+<!-- Bootstrap CDN from https://www.bootstrapcdn.com -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"
+  integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf"
+  crossorigin="anonymous"></script>
+<!-- AdminLTE CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.5/js/adminlte.js"
+  integrity="sha512-t17jNUTibMRY5Tw8mYDih8rp/+THxcggDd5YejcGhrVRLwmjBSjCKehQPQOXCr2HPRrF5zVsr+FWHfjO2Dz0Ng=="
+  crossorigin="anonymous"></script>
+<!-- Chart.js CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"
+  integrity="sha512-QEiC894KVkN9Tsoi6+mKf8HaCLJvyA6QIRzY5KrfINXYuP9NxdIkRQhGq3BZi0J4I7V5SidGM3XUQ5wFiMDuWg=="
+  crossorigin="anonymous"></script>
+
+<!-- SCRIPT FOR CHART -->
+<script>
+  $(function () {
+    //--------------
+    //- AREA CHART -
+    //--------------
+    // Get context with jQuery - using jQuery's .get() method.
+    var areaChartCanvas = $('#areaChart')[0].getContext('2d')
+    var areaChartData = {
+      labels  : ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'],
+      datasets: [
+        {
+          label               : 'Num of products',
+          backgroundColor     : 'rgba(60,141,188,0.9)',
+          borderColor         : 'rgba(60,141,188,0.8)',
+          pointRadius          : false,
+          pointColor          : '#3b8bba',
+          pointStrokeColor    : 'rgba(60,141,188,1)',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(60,141,188,1)',
+          data                : [28, 48, 40, 19, 86, 27, 90]
+        },
+        {
+          label               : 'Operation rate',
+          backgroundColor     : 'rgba(210, 214, 222, 1)',
+          borderColor         : 'rgba(210, 214, 222, 1)',
+          pointRadius         : false,
+          pointColor          : 'rgba(210, 214, 222, 1)',
+          pointStrokeColor    : '#c1c7d1',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(220,220,220,1)',
+          data                : [65, 59, 80, 81, 56, 55, 40]
+        },
+      ]
+    }
+    var areaChartOptions = {
+      maintainAspectRatio : false,
+      responsive : true,
+      legend: {
+        display: false
+      },
+      scales: {
+        xAxes: [{
+          gridLines : {
+            display : false,
+          }
+        }],
+        yAxes: [{
+          gridLines : {
+            display : false,
+          }
+        }]
+      }
+    }
+
+    //-------------
+    //- LINE CHART -
+    //--------------
+    // This will get the first returned node in the jQuery collection.
+    var areaChart       = new Chart(areaChartCanvas, { 
+      type: 'line',
+      data: areaChartData, 
+      options: areaChartOptions
+    })
+
+    var lineChartCanvas = $('#LineChart')[0].getContext('2d')
+    var lineChartOptions = jQuery.extend(true, {}, areaChartOptions)
+    var lineChartData = jQuery.extend(true, {}, areaChartData)
+    lineChartData.datasets[0].fill = false;
+    lineChartData.datasets[1].fill = false;
+    lineChartOptions.datasetFill = false
+
+    var lineChart = new Chart(lineChartCanvas, { 
+      type: 'line',
+      data: lineChartData, 
+      options: lineChartOptions
+    })
+  })
+</script>
+
+</body>
+</html>

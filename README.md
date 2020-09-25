@@ -1,6 +1,5 @@
 # UI
-Dashboard
-URL:**https://0e1ka10.github.io/UserInterface**
+**https://0e1ka10.github.io/UserInterface**
 
 # CSS, JS...
 - Bootstrap(v4.5.2)
